@@ -1,14 +1,14 @@
 package almacenBebidas
 
 class Bebida {
-    private val Id:Int
-    private val cantidadLitros:Double
-    private val marca:String
-    private var precio:Double
-    private val origen:String
-    private val concetracionAzucar:Double
-    private var descuento:Double
-    private val esAgua:Boolean
+    val Id:Int
+    val cantidadLitros:Double
+    val marca:String
+    var precio:Double
+    val origen:String
+    val concetracionAzucar:Double
+    var descuento:Double
+    val esAgua:Boolean
 
     constructor(id:Int, cantidad:Double, marca:String, precio:Double, origen:String) {
         this.Id = id

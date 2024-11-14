@@ -6,8 +6,8 @@ fun main () {
     var almacen = Almacen()
     almacen.agregarBebida(bebida1)
     almacen.agregarBebida(bebida1)
-    almacen.agregarBebida(bebida1)
-    almacen.eliminarBebida(2)
-    almacen.eliminarBebida(2)
+    //almacen.agregarBebida(bebida1)
+    //almacen.eliminarBebida(2)
+    //almacen.eliminarBebida(2)
 
 }

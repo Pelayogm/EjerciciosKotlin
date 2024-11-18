@@ -46,7 +46,9 @@ class Almacen () {
     fun mostrarBebidas () {
         for (i in estanteria) {
             for (j in i.indices) {
-                println(i[j].toString())
+                if (i[j].Id != -1) {
+                    println(i[j].toString())
+                }
             }
         }
     }
@@ -58,7 +60,7 @@ class Almacen () {
                 valorBebida += i[j].precio
             }
         }
-        println("El almacen está valorado en $valorBebida")
+        println("El almacen está valorado en $valorBebida euros")
     }
 
     fun calcularPrecio (marca:String) {
@@ -71,7 +73,7 @@ class Almacen () {
                     }
                 }
             }
-            println("En total de la marca $marca hay $valorBebidas en productos")
+            println("En total de la marca $marca hay $valorBebidas euros en productos")
         } catch (e:Exception) {
             println("El valor introducido no es valido")
         }
@@ -84,7 +86,7 @@ class Almacen () {
             for (i in bebidaLista) {
                 valorBebidas += i.precio
             }
-            println("El valor de la columna $columna es $valorBebidas")
+            println("El valor de la columna $columna es $valorBebidas euros")
         } catch (e:Exception) {
             println("El valor introducido no es valido")
         }

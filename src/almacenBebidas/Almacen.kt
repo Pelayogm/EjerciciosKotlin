@@ -2,63 +2,92 @@ package almacenBebidas
 
 class Almacen () {
 
-    private var columna1:MutableList<Bebida>
-    private var columna2:MutableList<Bebida>
-    private var columna3:MutableList<Bebida>
-    private var columna4:MutableList<Bebida>
-    private var columna5:MutableList<Bebida>
-
-    var estanteria: Array<MutableList<Bebida>>
-
-   init {
-        columna1 = MutableList(5) { Bebida(-1, 0.0, "", 0.0, "") }
-        columna2 = MutableList(5) { Bebida(-1, 0.0, "", 0.0, "") }
-        columna3 = MutableList(5) { Bebida(-1, 0.0, "", 0.0, "") }
-        columna4 = MutableList(5) { Bebida(-1, 0.0, "", 0.0, "") }
-        columna5 = MutableList(5) { Bebida(-1, 0.0, "", 0.0, "") }
-
-        estanteria = arrayOf(columna1, columna2, columna3, columna4, columna5)
-    }
+    var estanteria: Array<MutableList<Bebida>> = Array(5) { MutableList(5) { Bebida(-1, 0.0, "", 0.0, "") } }
 
     fun agregarBebida (bebida: Bebida) {
 
-        var bebidaExiste = false
-
-        for (i in 0 until estanteria.size) {
-            var bebidaLista = estanteria.get(i)
-            for (j in 0 until bebidaLista.size) {
-                var bebidaDeLaLista = bebidaLista[j]
-                if (bebidaDeLaLista.Id == bebida.Id) {
-                    bebidaExiste = true
+        for (i in estanteria) {
+            for (j in i.indices) {
+                if (i.get(j).Id == bebida.Id) {
                     println("La bebida introducida ya existe")
-                    break
+                    return
                 }
             }
         }
 
-        if (!bebidaExiste) {
-            for (i in 0 until estanteria.size) {
-                var bebidaLista = estanteria[i]
-                    for (j in 0.. bebidaLista.size) {
-                        var bebidaDeLaLista = bebidaLista[j]
-                        if (bebidaDeLaLista.Id == -1) {
-                            bebidaLista.add(j, bebida)
-                            println("Bebida guardada")
-                            break
+            for (i in estanteria) {
+                for (j in i.indices) {
+                    if (i.size <= 5) {
+                        if (i[j].Id == -1) {
+                            i[j] = bebida
+                            println("Bebida añadida al sistema")
+                            return
                         }
                     }
+                }
             }
-        }
+            println("No hay espacio en el almacen")
 
     }
 
     fun eliminarBebida (id:Int) {
-        
+        for (i in estanteria) {
+            for (j in i.indices) {
+                if (i.get(j).Id == id) {
+                    i[j] = Bebida(-1, 0.0, "", 0.0, "")
+                    println("Bebida eliminada")
+                    return
+                }
+            }
+        }
     }
 
 
     fun mostrarBebidas () {
+        for (i in estanteria) {
+            for (j in i.indices) {
+                println(i[j].toString())
+            }
+        }
+    }
 
+    fun calcularPrecio () {
+        var valorBebida = 0.0
+        for (i in estanteria) {
+            for (j in i.indices) {
+                valorBebida += i[j].precio
+            }
+        }
+        println("El almacen está valorado en $valorBebida")
+    }
+
+    fun calcularPrecio (marca:String) {
+        try {
+            var valorBebidas = 0.0
+            for (i in estanteria) {
+                for (j in i.indices) {
+                    if (marca == i[j].marca) {
+                        valorBebidas += i[j].precio
+                    }
+                }
+            }
+            println("En total de la marca $marca hay $valorBebidas en productos")
+        } catch (e:Exception) {
+            println("El valor introducido no es valido")
+        }
+    }
+
+    fun calcularPrecio (columna:Int) {
+        try {
+            val bebidaLista = estanteria[columna]
+            var valorBebidas = 0.0
+            for (i in bebidaLista) {
+                valorBebidas += i.precio
+            }
+            println("El valor de la columna $columna es $valorBebidas")
+        } catch (e:Exception) {
+            println("El valor introducido no es valido")
+        }
     }
 
 

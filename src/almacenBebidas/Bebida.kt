@@ -32,4 +32,9 @@ class Bebida {
         esAgua = false
     }
 
+    override fun toString(): String {
+        return "Bebida(Id=$Id, cantidadLitros=$cantidadLitros, marca='$marca', precio=$precio, origen='$origen', concetracionAzucar=$concetracionAzucar, descuento=$descuento, esAgua=$esAgua)"
+    }
+
+
 }
